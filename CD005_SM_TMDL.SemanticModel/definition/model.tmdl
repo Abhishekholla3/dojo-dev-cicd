@@ -1,0 +1,26 @@
+model Model
+	culture: en-IN
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-UM
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["dimcustomer","dimdate","dimproduct","dimstore","factsales"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.139.2054.0 (24.12)+334ca1c95b576cc53924655643b0d36f21caac55
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table dimcustomer
+ref table dimdate
+ref table DateTableTemplate_960a0f7f-8385-4ed0-8b7e-0d401ce9e9a0
+ref table LocalDateTable_bb34e040-cef1-42ab-950a-c900ce55950f
+ref table dimproduct
+ref table dimstore
+ref table factsales
+
+ref cultureInfo en-IN
+

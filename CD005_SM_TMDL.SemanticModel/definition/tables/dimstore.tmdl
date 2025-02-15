@@ -1,0 +1,63 @@
+table dimstore
+	lineageTag: b8c366f0-fd9b-4863-a1e1-7e418d43e21b
+
+	column StoreKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 150dda1f-f2c9-4ff9-865f-926755196b58
+		summarizeBy: none
+		sourceColumn: StoreKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column StoreName
+		dataType: string
+		lineageTag: 6e562435-9fca-40b9-afc2-601b00bac1d0
+		summarizeBy: none
+		sourceColumn: StoreName
+
+		annotation SummarizationSetBy = Automatic
+
+	column StoreType
+		dataType: string
+		lineageTag: 4046a56c-4836-491b-b2df-daa4b5410678
+		summarizeBy: none
+		sourceColumn: StoreType
+
+		annotation SummarizationSetBy = Automatic
+
+	column StoreCity
+		dataType: string
+		lineageTag: 3d86c486-28dc-4be6-b625-6b10db9ab1db
+		summarizeBy: none
+		sourceColumn: StoreCity
+
+		annotation SummarizationSetBy = Automatic
+
+	column StoreState
+		dataType: string
+		lineageTag: 78d489c9-ed5d-4e46-b74c-08377c816586
+		summarizeBy: none
+		sourceColumn: StoreState
+
+		annotation SummarizationSetBy = Automatic
+
+	column StoreCountry
+		dataType: string
+		lineageTag: dbd4a98d-1438-4c29-a89a-75e5e4191e41
+		summarizeBy: none
+		sourceColumn: StoreCountry
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dimstore = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("bh7vab5ztpgubbvmkfjzyjnkuy-rxeeosoyvcsunnypvwa4d54zsi.datawarehouse.fabric.microsoft.com", "CD005_Lakehouse"),
+				    dbo_dimstore = Source{[Schema="dbo",Item="dimstore"]}[Data]
+				in
+				    dbo_dimstore
+
+	annotation PBI_ResultType = Table
+

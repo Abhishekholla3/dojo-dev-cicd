@@ -1,0 +1,55 @@
+table dimproduct
+	lineageTag: 91146c22-1ff7-41b1-bc3d-3745f644491c
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: b6a56e90-d212-408a-9d59-31c2472356db
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductName
+		dataType: string
+		lineageTag: e6725eb4-12cb-4aec-8638-651447da90c7
+		summarizeBy: none
+		sourceColumn: ProductName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductCategory
+		dataType: string
+		lineageTag: be39f4e6-6ff1-4541-9cdd-34a79c57744a
+		summarizeBy: none
+		sourceColumn: ProductCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductSubcategory
+		dataType: string
+		lineageTag: 733c39f3-709e-4a1f-a223-cb3da3b36163
+		summarizeBy: none
+		sourceColumn: ProductSubcategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column Manufacturer
+		dataType: string
+		lineageTag: a0cdf7ea-d87e-45bb-9499-b44630d03c44
+		summarizeBy: none
+		sourceColumn: Manufacturer
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dimproduct = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("bh7vab5ztpgubbvmkfjzyjnkuy-rxeeosoyvcsunnypvwa4d54zsi.datawarehouse.fabric.microsoft.com", "CD005_Lakehouse"),
+				    dbo_dimproduct = Source{[Schema="dbo",Item="dimproduct"]}[Data]
+				in
+				    dbo_dimproduct
+
+	annotation PBI_ResultType = Table
+

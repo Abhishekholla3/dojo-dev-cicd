@@ -1,0 +1,9 @@
+{
+  "version": "4.0",
+  "datasetReference": {
+    "byPath": {
+      "path": "../CD005_SM_TMDL.SemanticModel"
+    },
+    "byConnection": null
+  }
+}

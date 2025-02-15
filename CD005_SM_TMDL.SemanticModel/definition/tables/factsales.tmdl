@@ -1,0 +1,82 @@
+table factsales
+	lineageTag: c1da4638-6aa9-4d10-aad2-7c266ced11e9
+
+	measure TotalQuantitySold = SUM(factsales[QuantitySold])
+		formatString: 0
+		lineageTag: 971d7ed1-1bf3-411d-abae-dbb34d8ff1bc
+
+	column SalesKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 9fea00d4-be23-443f-9d60-c1e806c4b14f
+		summarizeBy: count
+		sourceColumn: SalesKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 4eae789b-28b9-40a2-9035-5d60a603a634
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 90ea8f79-d788-434b-bfb7-f5e27b10ce53
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 71e34ba0-8a55-4acc-8225-e1c2d7d7a8cb
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column StoreKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 47ad73c4-a52b-4fe6-b4d8-bf0d07a6ef12
+		summarizeBy: none
+		sourceColumn: StoreKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesAmount
+		dataType: double
+		lineageTag: 691d8bb6-7731-4918-a56e-005e0df51be8
+		summarizeBy: sum
+		sourceColumn: SalesAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column QuantitySold
+		dataType: int64
+		formatString: 0
+		lineageTag: 26669b59-e4c3-4967-a774-f2e072d65421
+		summarizeBy: sum
+		sourceColumn: QuantitySold
+
+		annotation SummarizationSetBy = Automatic
+
+	partition factsales = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("bh7vab5ztpgubbvmkfjzyjnkuy-rxeeosoyvcsunnypvwa4d54zsi.datawarehouse.fabric.microsoft.com", "CD005_Lakehouse"),
+				    dbo_factsales = Source{[Schema="dbo",Item="factsales"]}[Data]
+				in
+				    dbo_factsales
+
+	annotation PBI_ResultType = Table
+

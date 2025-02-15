@@ -1,0 +1,25 @@
+relationship ec39e507-8757-4ad5-869e-0419489d4d05
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dimdate.Date
+	toColumn: LocalDateTable_bb34e040-cef1-42ab-950a-c900ce55950f.Date
+
+relationship 58ce656f-3738-ed28-b7d4-6cffb731db35
+	crossFilteringBehavior: bothDirections
+	fromColumn: dimcustomer.CustomerKey
+	toColumn: factsales.CustomerKey
+
+relationship 74317fbe-b999-f85b-f031-6c22035eb4a0
+	crossFilteringBehavior: bothDirections
+	fromColumn: dimstore.StoreKey
+	toColumn: factsales.StoreKey
+
+relationship ece143c7-657b-d1f3-d2e8-1b3a211cdc10
+	crossFilteringBehavior: bothDirections
+	fromColumn: dimdate.DateKey
+	toColumn: factsales.DateKey
+
+relationship f620be14-8cd9-e419-79d8-ca6b7d5eb314
+	crossFilteringBehavior: bothDirections
+	fromColumn: dimproduct.ProductKey
+	toColumn: factsales.ProductKey
+

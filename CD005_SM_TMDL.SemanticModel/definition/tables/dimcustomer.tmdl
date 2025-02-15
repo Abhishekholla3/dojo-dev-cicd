@@ -1,0 +1,95 @@
+table dimcustomer
+	lineageTag: 6f597f36-8419-42f2-b342-490b87d55b87
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 36cff41e-6488-4f2b-9b54-07ea6d127108
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerName
+		dataType: string
+		lineageTag: 1d17032b-dd5f-485a-8de7-fb8dae94fc25
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerGender
+		dataType: string
+		lineageTag: 457a5473-4eb9-436a-a9b1-7b7d26802f7d
+		summarizeBy: none
+		sourceColumn: CustomerGender
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerEmail
+		dataType: string
+		lineageTag: 9140b118-c6cf-4b06-8bc7-5a7c0415fd4a
+		summarizeBy: none
+		sourceColumn: CustomerEmail
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerPhone
+		dataType: string
+		lineageTag: 419ad7f8-0869-4ca2-ba2e-55e587e51b9d
+		summarizeBy: none
+		sourceColumn: CustomerPhone
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerAddress
+		dataType: string
+		lineageTag: 24086266-e8d4-4efa-91ed-2b83bbf9f0a4
+		summarizeBy: none
+		sourceColumn: CustomerAddress
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerCity
+		dataType: string
+		lineageTag: 61916697-a9f5-4e18-bd21-c831352f8907
+		summarizeBy: none
+		sourceColumn: CustomerCity
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerState
+		dataType: string
+		lineageTag: 3e5adcd2-3383-4e12-b83d-7f2bf7a728fc
+		summarizeBy: none
+		sourceColumn: CustomerState
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerZipCode
+		dataType: string
+		lineageTag: b34bd6f5-9d28-4ebf-b000-02d8b7f5f27f
+		summarizeBy: none
+		sourceColumn: CustomerZipCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerCountry
+		dataType: string
+		lineageTag: 7dd90533-142a-404a-a83d-b8d15356f6a7
+		summarizeBy: none
+		sourceColumn: CustomerCountry
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dimcustomer = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("bh7vab5ztpgubbvmkfjzyjnkuy-rxeeosoyvcsunnypvwa4d54zsi.datawarehouse.fabric.microsoft.com", "CD005_Lakehouse"),
+				    dbo_dimcustomer = Source{[Schema="dbo",Item="dimcustomer"]}[Data]
+				in
+				    dbo_dimcustomer
+
+	annotation PBI_ResultType = Table
+
